@@ -1,0 +1,25 @@
+<div>
+	<a href="/#/dashboard">Dashboard</a> <a href="/logout">logout</a>
+	<p><a href="/#/user/{{topic.user._id}}">{{topic.user_id.name}}</a> posted a topic: </p>
+	<h3>{{topic.title}}</h3>
+	<p>{{topic.description}}</p>
+	<br>
+	<h5>Submit a Post:</h5>
+	<form ng-submit='createPost(topic._id)'>
+		<textarea ng-model='post.post'></textarea>
+		<br>
+		<input type="submit" value="Post">
+	</form>
+	<div ng-repeat="post in topic.posts">
+		<p><a href="/#/user/{{post.user_id._id}}">{{post.user_id.name}}</a> said: {{post.post}}</p>
+		<div ng-repeat='comment in post.comments'>
+			<p><a href="/#/user/{{comment.user.id}}">{{comment.user.name}}</a> said: {{comment.comment}}</p>
+		</div>
+		<form ng-submit="createComment(topic._id, post._id, comment)">
+			<p>Sumbit a Comment:</p>
+			<textarea ng-model='comment.comment'></textarea>
+			<input type="submit" value="Comment">
+		</form>
+		<br>
+	</div>
+</div>
