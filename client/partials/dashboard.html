@@ -2,6 +2,7 @@
 <div>
 	<h2>Dashboard</h2>
 	<p><a href="/#/user/{{currUser._id}}">{{currUser.name}}</a> <a href="/logout">logout</a></p>
+	<p>Search: <input type="text" ng-model="searchText"></p>
 	<table>
 		<tr>
 			<th>Category</th>
@@ -9,7 +10,7 @@
 			<th>Username</th>
 			<th>Posts</th>
 		</tr>
-		<tr ng-repeat='topic in topics'>
+		<tr ng-repeat='topic in topics | filter: searchText'>
 			<td>{{topic.category}}</td>
 			<td><a href="/#/topic/{{topic._id}}">{{topic.title}}</a></td>
 			<td><a href="/#/user/{{topic.user_id._id}}">{{topic.user_id.name}}</a></td>
